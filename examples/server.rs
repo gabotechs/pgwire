@@ -21,8 +21,24 @@ impl SimpleQueryHandler for DummyProcessor {
     {
         println!("{:?}", query);
         if query.starts_with("SELECT") {
-            let f1 = FieldInfo::new("id".into(), None, None, Type::INT4, FieldFormat::Text);
-            let f2 = FieldInfo::new("name".into(), None, None, Type::VARCHAR, FieldFormat::Text);
+            let f1 = FieldInfo::new(
+                "id".into(),
+                None,
+                None,
+                Type::INT4,
+                None,
+                None,
+                FieldFormat::Text,
+            );
+            let f2 = FieldInfo::new(
+                "name".into(),
+                None,
+                None,
+                Type::VARCHAR,
+                None,
+                None,
+                FieldFormat::Text,
+            );
             let schema = Arc::new(vec![f1, f2]);
 
             let data = vec![

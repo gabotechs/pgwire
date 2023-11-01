@@ -99,6 +99,8 @@ fn row_desc_from_stmt(stmt: &Statement, format: &Format) -> PgWireResult<Vec<Fie
                 None,
                 None,
                 field_type,
+                None,
+                None,
                 format.format_for(idx),
             ))
         })

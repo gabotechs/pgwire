@@ -112,6 +112,8 @@ async fn encode_dataframe<'a>(df: DataFrame) -> PgWireResult<QueryResponse<'a>> 
                     None,
                     None,
                     pg_type,
+                    None,
+                    None,
                     FieldFormat::Text,
                 ))
             })

@@ -42,12 +42,22 @@ struct DummyDatabase {
 
 impl DummyDatabase {
     fn schema(&self, format: &Format) -> Vec<FieldInfo> {
-        let f1 = FieldInfo::new("id".into(), None, None, Type::INT4, format.format_for(0));
+        let f1 = FieldInfo::new(
+            "id".into(),
+            None,
+            None,
+            Type::INT4,
+            None,
+            None,
+            format.format_for(0),
+        );
         let f2 = FieldInfo::new(
             "name".into(),
             None,
             None,
             Type::VARCHAR,
+            None,
+            None,
             format.format_for(1),
         );
         let f3 = FieldInfo::new(
@@ -55,6 +65,8 @@ impl DummyDatabase {
             None,
             None,
             Type::TIMESTAMP,
+            None,
+            None,
             format.format_for(2),
         );
         vec![f1, f2, f3]

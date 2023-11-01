@@ -39,6 +39,8 @@ impl SimpleQueryHandler for GluesqlProcessor {
                                         None,
                                         None,
                                         Type::UNKNOWN,
+                                        None,
+                                        None,
                                         FieldFormat::Text,
                                     )
                                 })

@@ -85,6 +85,8 @@ pub struct FieldInfo {
     table_id: Option<i32>,
     column_id: Option<i16>,
     datatype: Type,
+    type_size: Option<i16>,
+    type_modifier: Option<i32>,
     format: FieldFormat,
 }
 
@@ -95,9 +97,8 @@ impl From<&FieldInfo> for FieldDescription {
             fi.table_id.unwrap_or(0),  // table_id
             fi.column_id.unwrap_or(0), // column_id
             fi.datatype.oid(),         // type_id
-            // TODO: type size and modifier
-            0,
-            0,
+            fi.type_size.unwrap_or(0),
+            fi.type_modifier.unwrap_or(0),
             fi.format.value(),
         )
     }
@@ -277,9 +278,9 @@ mod test {
     #[test]
     fn test_data_row_encoder() {
         let schema = Arc::new(vec![
-            FieldInfo::new("id".into(), None, None, Type::INT4, FieldFormat::Text),
-            FieldInfo::new("name".into(), None, None, Type::VARCHAR, FieldFormat::Text),
-            FieldInfo::new("ts".into(), None, None, Type::TIMESTAMP, FieldFormat::Text),
+            FieldInfo::new("id".into(), None, None, Type::INT4, None, None, FieldFormat::Text),
+            FieldInfo::new("name".into(), None, None, Type::VARCHAR, None, None, FieldFormat::Text),
+            FieldInfo::new("ts".into(), None, None, Type::TIMESTAMP, None, None, FieldFormat::Text),
         ]);
         let mut encoder = DataRowEncoder::new(schema);
         encoder.encode_field(&2001).unwrap();

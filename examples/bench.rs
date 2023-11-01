@@ -19,7 +19,15 @@ impl SimpleQueryHandler for DummyProcessor {
     where
         C: ClientInfo + Unpin + Send + Sync,
     {
-        let f1 = FieldInfo::new("?column?".into(), None, None, Type::INT4, FieldFormat::Text);
+        let f1 = FieldInfo::new(
+            "?column?".into(),
+            None,
+            None,
+            Type::INT4,
+            None,
+            None,
+            FieldFormat::Text,
+        );
         let schema = Arc::new(vec![f1]);
 
         let schema_ref = schema.clone();
